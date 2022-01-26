@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "mechanic")
+@Table(name = "mechanics")
 @Data
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -22,4 +22,6 @@ public class Mechanic {
     String login;
 
     String password;
+
+    String name;
 }

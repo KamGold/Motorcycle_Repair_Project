@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Service {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String serviceName;
     int price;

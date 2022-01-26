@@ -1,4 +1,4 @@
-package pl.KamilGolda.Workshop.app;
+package pl.KamilGolda.Workshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

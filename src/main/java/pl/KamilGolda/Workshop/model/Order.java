@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,13 +20,20 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+
+    @Size(min = 3)
+    @NotBlank
     String brand;
+
+    @NotBlank
     String model;
+
     int year;
     String registrationNumber;
     String ownerName;
     String ownerSurname;
     int ownerPhone;
+    boolean isActive;
 
     @ManyToOne
     @JoinColumn(name = "Mechanic_id")

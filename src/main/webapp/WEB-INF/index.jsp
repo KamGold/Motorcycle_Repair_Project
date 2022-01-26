@@ -6,7 +6,7 @@
 <body>
 <h1>For testing purposes!</h1>
 <div>
-    <a href="">Test</a>
+    <a href="/order/list">All order list</a>
 
 </div>
 </body>
