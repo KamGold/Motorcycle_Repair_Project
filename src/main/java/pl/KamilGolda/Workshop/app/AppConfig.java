@@ -26,13 +26,6 @@ public class AppConfig implements WebMvcConfigurer {
         registry.jsp("/WEB-INF/", ".jsp");
     }
 
-//    @Bean(name = "localeResolver")
-//    public LocaleContextResolver getLocalContextResolver() {
-//        SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-//        localeResolver.setDefaultLocale(new Locale("pl", "PL"));
-//        return localeResolver;
-//    }
-
     @Bean(name = "transactionManager")
     public JpaTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);

@@ -6,9 +6,8 @@
 <body>
 <h1>For testing purposes!</h1>
 <div>
-    <a href="/form/books/list">Books</a>
-    <a href="/form/authors/list">Authors</a>
-    <a href="/form/publishers/list">Publishers</a>
+    <a href="">Test</a>
+
 </div>
 </body>
 </html>
