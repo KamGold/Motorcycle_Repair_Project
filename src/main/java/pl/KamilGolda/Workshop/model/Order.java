@@ -29,7 +29,7 @@ public class Order {
     String model;
 
     int year;
-    String registrationNumber;
+    String licensePlate;
     String ownerName;
     String ownerSurname;
     int ownerPhone;

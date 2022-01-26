@@ -30,8 +30,8 @@
     </div>
     <div>
         <label>Registration number: </label>
-        <form:input path="registrationNumber" type="text"/>
-        <form:errors path="registrationNumber" cssClass="error"/>
+        <form:input path="licensePlate" type="text"/>
+        <form:errors path="licensePlate" cssClass="error"/>
     </div>
     <div>
         <label>Owner Name: </label>
@@ -45,7 +45,8 @@
     </div>
     <div>
         <label>Owner Phone: </label>
-        <form:input path="ownerPhone" type="number"/>
+        <form:input path="ownerPhone" type="tel" pattern="[0-9]{9}"/>
+        <small>Format: 123456789</small>
         <form:errors path="ownerPhone" cssClass="error"/>
     </div>
     <div>
