@@ -33,7 +33,7 @@ public class Order {
     String ownerName;
     String ownerSurname;
     int ownerPhone;
-    boolean isActive;
+    boolean active;
 
     @ManyToOne
     @JoinColumn(name = "Mechanic_id")

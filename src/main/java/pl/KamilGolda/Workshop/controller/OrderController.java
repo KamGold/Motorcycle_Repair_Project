@@ -26,19 +26,26 @@ public class OrderController {
     private final MechanicRepository mechanicRepository;
 
     @GetMapping("/list")
-    public String getList(Model model){
+    public String getList(Model model) {
         model.addAttribute("orders", orderRepository.findAll());
-        return"order/list";
+        return "order/list";
+    }
+
+    @GetMapping("/open")
+    public String getActive(Model model) {
+        model.addAttribute("orders", orderRepository.findByActiveTrue());
+        return "order/list";
     }
 
     @GetMapping("/add")
-    public String getForm(Model model){
-        model.addAttribute("order",new Order());
+    public String getForm(Model model) {
+        model.addAttribute("order", new Order());
         return "order/form";
     }
+
     @PostMapping("/add")
     public String saveOrder(@Valid Order order, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "order/form";
         }
         order.setActive(true);
@@ -47,7 +54,7 @@ public class OrderController {
     }
 
     @ModelAttribute("mechanics")
-    public Collection<Mechanic> mechanics(){
+    public Collection<Mechanic> mechanics() {
         return mechanicRepository.findAll();
     }
 }

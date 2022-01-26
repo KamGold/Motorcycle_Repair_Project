@@ -6,7 +6,9 @@
 <body>
 <h1>For testing purposes!</h1>
 <div>
-    <a href="/order/list">All order list</a>
+    <li><a href="/order/list">All orders list</a></li>
+
+    <li><a href="/order/open">Active orders list</a></li>
 
 </div>
 </body>

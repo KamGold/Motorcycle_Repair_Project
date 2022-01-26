@@ -9,8 +9,8 @@
 </head>
 <body>
 <div>
-    <a href="/order/add">Add new Order</a>
     <a href="/">Back to index</a>
+    <a href="/order/add">Add new Order</a>
 </div>
 <ul>
     <c:forEach items="${orders}" var="order">
