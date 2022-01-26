@@ -58,5 +58,8 @@
         <input type="submit" value="Save">
     </div>
 </form:form>
+<form action="/order/list">
+    <button type="submit">Click me</button>
+</form>
 </body>
 </html>

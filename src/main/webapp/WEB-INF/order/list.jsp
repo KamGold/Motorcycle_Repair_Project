@@ -15,7 +15,7 @@
 <ul>
     <c:forEach items="${orders}" var="order">
         <li>
-                ${order.brand}, ${order.model}, ${order.year}, ${order.registrationNumber},${order.ownerName},${order.ownerSurname},${order.ownerPhone}
+                ${order.brand}, ${order.model}, ${order.year}, ${order.licensePlate},${order.ownerName},${order.ownerSurname},${order.ownerPhone}
             <a href="/form/order/edit/${order.id}">Edit</a>
             <a href="/form/order/remove/${order.id}">Remove</a>
         </li>
