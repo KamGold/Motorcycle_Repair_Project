@@ -34,7 +34,9 @@
             <td align="center">${orders.ownerPhone}</td>
             <td>
                 <a href="/order/edit/${orders.id}">Edit</a>
-                <a href="/order/close/${orders.id}">Close order</a>
+                <c:if test="${orders.active == true}">
+                    <a href="/order/close/${orders.id}">Close order</a>
+                </c:if>
             </td>
         </tr>
     </c:forEach>

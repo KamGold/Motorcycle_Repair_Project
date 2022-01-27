@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form"
+           uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <style>
@@ -8,11 +9,12 @@
             color: orangered;
         }
     </style>
-    <title>Add order</title>
+    <title>Edit Order ${order.id}</title>
 </head>
 <body>
 <%--@elvariable id="order" type="pl.KamilGolda.Workshop.model.Order"--%>
-<form:form method="post" modelAttribute="order">
+<form:form action="/order/edit" method="post" modelAttribute="order">
+    <form:hidden path="id"/>
     <div>
         <label>Brand: </label>
         <form:input path="brand" type="text"/>
@@ -55,11 +57,13 @@
         <form:errors path="mechanic" cssClass="error"/>
     </div>
     <div>
-        <input type="submit" value="Save">
+        <label>Active: </label>
+        <form:input path="active" type="text"/>
+        <form:errors path="active" cssClass="error"/>
+    </div>
+    <div>
+        <input type="submit" value="Update">
     </div>
 </form:form>
-<form action="/order/list">
-    <button type="submit">Back to Main Page</button>
-</form>
 </body>
 </html>

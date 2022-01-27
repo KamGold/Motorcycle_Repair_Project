@@ -1,6 +1,7 @@
 package pl.KamilGolda.Workshop.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -59,9 +60,27 @@ public class OrderController {
         if (bindingResult.hasErrors()) {
             return "order/form";
         }
-        order.setActive(true);
         orderRepository.save(order);
         return "redirect:/order/list";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String getEditOrder(@PathVariable int id, Model model){
+        Optional<Order> orderOptional = orderRepository.findById(id);
+        if (orderOptional.isPresent()){
+            model.addAttribute("order", orderOptional.get());
+        }else {
+            return "errors/id";
+        }
+        return "order/edit";
+    }
+    @PostMapping("/edit")
+    public String updateOrder(@Valid Order order, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "order/edit";
+        }
+        orderRepository.save(order);
+        return "redirect:/order/open";
     }
 
     @ModelAttribute("mechanics")
