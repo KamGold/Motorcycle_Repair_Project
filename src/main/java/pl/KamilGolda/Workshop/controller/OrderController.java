@@ -13,6 +13,7 @@ import pl.KamilGolda.Workshop.repository.OrderRepository;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -36,11 +37,15 @@ public class OrderController {
 
     @GetMapping("/close/{id}")
     public String closeOrder(@PathVariable int id) {
-        Order order = orderRepository.getById(id);
-        order.setActive(false);
-        orderRepository.save(order);
+        Optional<Order> order = orderRepository.findById(id);
+        if(order.isPresent()){
+            Order toUpdate = order.get();
+            toUpdate.setActive(false);
+            orderRepository.save(toUpdate);
             return "redirect:/order/open";
-
+        }else {
+            return "errors/id";
+        }
     }
 
     @GetMapping("/add")
