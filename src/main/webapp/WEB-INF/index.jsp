@@ -11,5 +11,9 @@
     <li><a href="/order/open">Active orders list</a></li>
 
 </div>
+<br/>
+<div>
+    <li><a href="/parts/list">Parts list</a></li>
+</div>
 </body>
 </html>

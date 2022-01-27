@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "parts")
@@ -17,8 +19,12 @@ public class Parts {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+    @NotBlank
     String partName;
+    @NotBlank
     String manufacturer;
-    int price;
-    int availability;
+
+    double price;
+    @Min(1)
+    int stock;
 }

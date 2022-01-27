@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.KamilGolda.Workshop.model.Mechanic;
 import pl.KamilGolda.Workshop.model.Order;
 import pl.KamilGolda.Workshop.repository.MechanicRepository;
@@ -35,6 +32,15 @@ public class OrderController {
     public String getActive(Model model) {
         model.addAttribute("orders", orderRepository.findByActiveTrue());
         return "order/list";
+    }
+
+    @GetMapping("/close/{id}")
+    public String closeOrder(@PathVariable int id) {
+        Order order = orderRepository.getById(id);
+        order.setActive(false);
+        orderRepository.save(order);
+            return "redirect:/order/open";
+
     }
 
     @GetMapping("/add")
