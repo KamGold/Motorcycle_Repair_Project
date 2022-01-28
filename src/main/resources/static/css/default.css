@@ -1,0 +1,32 @@
+body{
+    background-color: black;
+    color: white;
+    position: relative;
+}
+.default {
+    color: white;
+    width: 40%;
+    margin: auto;
+    padding: 10px;
+}
+a:link, a:visited {
+    background-color: grey;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: red;
+}
+.test {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.error {
+    color: orangered;
+}
