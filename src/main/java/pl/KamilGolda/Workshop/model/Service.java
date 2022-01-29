@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "service")
@@ -18,6 +20,10 @@ public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    String serviceName;
-    int price;
+    @NotBlank
+    String type;
+    @NotBlank
+    String name;
+    @Min(1)
+    double price;
 }

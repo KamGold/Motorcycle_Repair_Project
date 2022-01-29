@@ -12,25 +12,23 @@
 <div class="default">
     <div>
         <a href="/">Back to Main Page</a>
-        <a href="/parts/add">Add new Parts</a>
+        <a href="/service/add">Add new Service type</a>
     </div>
     <table>
         <thead>
-        <th scope="col"> Part Name</th>
-        <th scope="col"> Manufacturer</th>
-        <th scope="col"> Price</th>
-        <th scope="col"> Stock</th>
+        <th scope="col"> Service Type</th>
+        <th scope="col"> Service Name</th>
+        <th scope="col"> price</th>
         </thead>
         <tbody>
-        <c:forEach items="${parts}" var="parts">
+        <c:forEach items="${service}" var="service">
             <tr>
-                <th scope="row" align="center">${parts.partName}</th>
-                <td align="center">${parts.manufacturer}</td>
-                <td align="center">${parts.price}</td>
-                <td align="center">${parts.stock}</td>
+                <th scope="row" align="center">${service.type}</th>
+                <td align="center">${service.name}</td>
+                <td align="center">${service.price}</td>
                 <td>
-                    <a href="/parts/edit/${parts.id}">Edit</a>
-                    <a href="/parts/remove/${parts.id}">Remove</a>
+                    <a href="/service/edit/${service.id}">Edit</a>
+                    <a href="/service/remove/${service.id}">Remove</a>
                 </td>
             </tr>
         </c:forEach>

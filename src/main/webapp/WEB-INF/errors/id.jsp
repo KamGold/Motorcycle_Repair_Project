@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link href="/css/default.css" rel="stylesheet"/>
+    <link href="/css/styles.css" rel="stylesheet"/>
 
     <title>ERROR</title>
 </head>

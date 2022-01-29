@@ -4,12 +4,13 @@
 <html>
 <head>
     <link href="/css/styles.css" rel="stylesheet"/>
-    <title>Add part</title>
+    <title>Add Part ID${parts.id}</title>
 </head>
 <body>
 <div class="default">
     <%--@elvariable id="parts" type="pl.KamilGolda.Workshop.model.Parts"--%>
-    <form:form method="post" modelAttribute="parts">
+    <form:form action="/parts/edit" method="post" modelAttribute="parts">
+        <form:hidden path="id"/>
         <div>
             <label>Part Name: </label>
             <form:input path="partName" type="text"/>
@@ -27,14 +28,14 @@
         </div>
         <div>
             <label>Quantity: </label>
-            <form:input path="stock" type="text"/>
+            <form:input path="stock" type="number"/>
             <form:errors path="stock" cssClass="error"/>
         </div>
         <div>
             <input type="submit" value="Save">
         </div>
     </form:form>
-    <form action="/">
+    <form action="/parts/list">
         <button type="submit">Back to Main Page</button>
     </form>
 </div>

@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <link href="/css/default.css" rel="stylesheet"/>
+    <link href="/css/styles.css" rel="stylesheet"/>
     <title>Orders</title>
 </head>
 <body>
@@ -23,6 +23,7 @@
         <th scope="col"> Owner Name</th>
         <th scope="col"> Owner Surname</th>
         <th scope="col"> Owner Phone</th>
+        <th scope="col"> Assigned Mechanic</th>
         </thead>
         <tbody>
         <c:forEach items="${orders}" var="orders">
@@ -34,11 +35,14 @@
                 <td align="center">${orders.ownerName}</td>
                 <td align="center">${orders.ownerSurname}</td>
                 <td align="center">${orders.ownerPhone}</td>
+                <td align="center">${orders.mechanic.name}</td>
                 <td>
-                    <a href="/order/edit/${orders.id}">Edit</a>
-                    <c:if test="${orders.active == true}">
-                        <a href="/order/close/${orders.id}">Close order</a>
-                    </c:if>
+                    <div>
+                        <a href="/order/edit/${orders.id}">Edit</a>
+                        <c:if test="${orders.active == true}">
+                            <a href="/order/close/${orders.id}">Close order</a>
+                        </c:if>
+                    </div>
                 </td>
             </tr>
         </c:forEach>

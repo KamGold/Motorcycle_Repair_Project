@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,7 +33,8 @@ public class Order {
     String licensePlate;
     String ownerName;
     String ownerSurname;
-    int ownerPhone;
+    @Pattern(regexp = "[0-9]{3}?-[0-9]{3}?-[0-9]{3}")
+    String ownerPhone;
     boolean active;
 
     @ManyToOne
