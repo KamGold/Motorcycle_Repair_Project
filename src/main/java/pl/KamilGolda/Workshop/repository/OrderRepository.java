@@ -12,6 +12,6 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     Optional<Order> findById(int id);
 
-    List<Order> findByActiveTrue();
+    List<Order> findByActive(boolean active);
 
 }

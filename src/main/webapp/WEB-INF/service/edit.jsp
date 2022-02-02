@@ -4,12 +4,14 @@
 <html>
 <head>
     <link href="/styles.css" rel="stylesheet" type="text/css"/>
-    <title>Add Service</title>
+    <title>Edit Service ID:${service.id}</title>
 </head>
 <body>
 <div class="default">
     <%--@elvariable id="service" type="pl.KamilGolda.Workshop.model.Service"--%>
-    <form:form method="post" modelAttribute="service">
+    <form:form action="/service/edit" method="post" modelAttribute="service">
+        <form:hidden path="id"/>
+
         <div>
             <label>Service Type: </label>
             <form:select path="type" type="text">

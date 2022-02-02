@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <link href="/css/styles.css" rel="stylesheet"/>
+    <link href="/styles.css" rel="stylesheet" type="text/css"/>
     <title>Parts List</title>
 </head>
 <body>

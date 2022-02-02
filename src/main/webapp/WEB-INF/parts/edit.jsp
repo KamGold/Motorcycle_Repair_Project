@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <link href="/css/styles.css" rel="stylesheet"/>
+    <link href="/styles.css" rel="stylesheet" type="text/css"/>
     <title>Add Part ID${parts.id}</title>
 </head>
 <body>

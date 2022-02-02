@@ -5,8 +5,7 @@
 
 <html>
 <head>
-    <link href="/css/styles.css" rel="stylesheet"/>
-    <title>Orders</title>
+    <link href="/styles.css" rel="stylesheet" type="text/css"/>    <title>Orders</title>
 </head>
 <body>
 <div class="default">

@@ -4,8 +4,7 @@
 
 <html>
 <head>
-    <link href="/css/styles.css" rel="stylesheet"/>
-    <title>Add order</title>
+    <link href="/styles.css" rel="stylesheet" type="text/css"/>    <title>Add order</title>
 </head>
 <body>
 <div class="default">

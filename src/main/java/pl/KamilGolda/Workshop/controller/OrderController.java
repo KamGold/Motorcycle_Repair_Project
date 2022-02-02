@@ -1,15 +1,18 @@
 package pl.KamilGolda.Workshop.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.KamilGolda.Workshop.model.Mechanic;
 import pl.KamilGolda.Workshop.model.Order;
+import pl.KamilGolda.Workshop.model.Parts;
+import pl.KamilGolda.Workshop.model.Service;
 import pl.KamilGolda.Workshop.repository.MechanicRepository;
 import pl.KamilGolda.Workshop.repository.OrderRepository;
+import pl.KamilGolda.Workshop.repository.PartsRepository;
+import pl.KamilGolda.Workshop.repository.ServiceRepository;
 
 
 import javax.validation.Valid;
@@ -23,6 +26,8 @@ public class OrderController {
 
     private final OrderRepository orderRepository;
     private final MechanicRepository mechanicRepository;
+    private final PartsRepository partsRepository;
+    private final ServiceRepository serviceRepository;
 
     @GetMapping("/list")
     public String getList(Model model) {
@@ -32,19 +37,19 @@ public class OrderController {
 
     @GetMapping("/open")
     public String getActive(Model model) {
-        model.addAttribute("orders", orderRepository.findByActiveTrue());
+        model.addAttribute("orders", orderRepository.findByActive(true));
         return "order/list";
     }
 
     @GetMapping("/close/{id}")
     public String closeOrder(@PathVariable int id) {
         Optional<Order> order = orderRepository.findById(id);
-        if(order.isPresent()){
+        if (order.isPresent()) {
             Order toUpdate = order.get();
             toUpdate.setActive(false);
             orderRepository.save(toUpdate);
             return "redirect:/order/open";
-        }else {
+        } else {
             return "errors/id";
         }
     }
@@ -65,15 +70,16 @@ public class OrderController {
     }
 
     @GetMapping("/edit/{id}")
-    public String getEditOrder(@PathVariable int id, Model model){
+    public String getEditOrder(@PathVariable int id, Model model) {
         Optional<Order> orderOptional = orderRepository.findById(id);
-        if (orderOptional.isPresent()){
+        if (orderOptional.isPresent()) {
             model.addAttribute("order", orderOptional.get());
-        }else {
+        } else {
             return "errors/id";
         }
         return "order/edit";
     }
+
     @PostMapping("/edit")
     public String updateOrder(@Valid Order order, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -83,8 +89,43 @@ public class OrderController {
         return "redirect:/order/open";
     }
 
+    @PostMapping("/summary/{id}")
+    public String getOrderSummary(@PathVariable int id, Model model) {
+        Optional<Order> optionalOrder = orderRepository.findById(id);
+        if (optionalOrder.isPresent()) {
+            model.addAttribute("order", optionalOrder.get());
+        } else {
+            return "Error sorry :(";
+        }
+        Order order = optionalOrder.get();
+        double partsTotalCost = order.getParts().stream().mapToDouble(Parts::getPrice).reduce(0, Double::sum);
+        double servicesTotalCost = order.getServices().stream().mapToDouble(Service::getPrice).reduce(0, Double::sum);
+        model.addAttribute("partsTotalCost", partsTotalCost);
+        model.addAttribute("servicesTotalCost", servicesTotalCost);
+        return "order/summary";
+    }
+    @PostMapping("/summary")
+    public String orderSummary(@Valid Order order, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return "Error Sorry :(";
+        }
+        order.setActive(false);
+        orderRepository.save(order);
+        return "index";
+    }
+
     @ModelAttribute("mechanics")
     public Collection<Mechanic> mechanics() {
         return mechanicRepository.findAll();
+    }
+
+    @ModelAttribute("parts")
+    public Collection<Parts> parts() {
+        return partsRepository.findAll();
+    }
+
+    @ModelAttribute("services")
+    public Collection<Service> services() {
+        return serviceRepository.findAll();
     }
 }
