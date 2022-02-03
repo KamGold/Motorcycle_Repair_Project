@@ -79,7 +79,9 @@
                 </table>
             <h3> Cost of parts used :  ${servicesTotalCost}</h3>
         </div>
+
     </div>
+    <div><h2>Order Total Cost : ${orderTotalCost}</h2></div>
 </div>
 </body>
 </html>

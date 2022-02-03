@@ -100,8 +100,10 @@ public class OrderController {
         Order order = optionalOrder.get();
         double partsTotalCost = order.getParts().stream().mapToDouble(Parts::getPrice).reduce(0, Double::sum);
         double servicesTotalCost = order.getServices().stream().mapToDouble(Service::getPrice).reduce(0, Double::sum);
+        double orderTotalCost = partsTotalCost + servicesTotalCost;
         model.addAttribute("partsTotalCost", partsTotalCost);
         model.addAttribute("servicesTotalCost", servicesTotalCost);
+        model.addAttribute("orderTotalCost", orderTotalCost);
         return "order/summary";
     }
     @PostMapping("/summary")
