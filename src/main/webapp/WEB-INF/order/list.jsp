@@ -10,8 +10,8 @@
 <body>
 <div class="default">
     <div>
-        <a href="/">Back to index</a>
-        <a href="/order/add">Add new Order</a>
+        <a class="button1" href="/">Back to index</a>
+        <a class="button1" href="/order/add">Add new Order</a>
     </div>
     <table>
         <thead>
@@ -37,9 +37,9 @@
                 <td align="center">${orders.mechanic.name}</td>
                 <td>
                     <div>
-                        <a href="/order/edit/${orders.id}">Edit</a>
+                        <a class="button1" href="/order/edit/${orders.id}">Edit</a>
                         <c:if test="${orders.active == true}">
-                            <a href="/order/close/${orders.id}">Close order</a>
+                            <a class="button1" href="/order/close/${orders.id}">Close order</a>
                         </c:if>
                     </div>
                 </td>

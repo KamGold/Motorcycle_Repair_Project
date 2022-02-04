@@ -36,7 +36,7 @@
         </div>
     </form:form>
     <form action="/">
-        <button type="submit">Back to Main Page</button>
+        <button class="button1" type="submit">Back to Main Page</button>
     </form>
 </div>
 </body>

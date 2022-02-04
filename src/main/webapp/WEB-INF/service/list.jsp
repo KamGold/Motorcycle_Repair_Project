@@ -11,8 +11,8 @@
 <body>
 <div class="default">
     <div>
-        <a href="/">Back to Main Page</a>
-        <a href="/service/add">Add new Service type</a>
+        <a class="button1" href="/">Back to Main Page</a>
+        <a class="button1" href="/service/add">Add new Service type</a>
     </div>
     <table>
         <thead>
@@ -27,8 +27,8 @@
                 <td align="center">${service.name}</td>
                 <td align="center">${service.price}</td>
                 <td>
-                    <a href="/service/edit/${service.id}">Edit</a>
-                    <a href="/service/remove/${service.id}">Remove</a>
+                    <a class="button1" href="/service/edit/${service.id}">Edit</a>
+                    <a class="button1" href="/service/remove/${service.id}">Remove</a>
                 </td>
             </tr>
         </c:forEach>

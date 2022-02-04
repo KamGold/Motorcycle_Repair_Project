@@ -11,8 +11,8 @@
 <body>
 <div class="default">
     <div>
-        <a href="/">Back to Main Page</a>
-        <a href="/parts/add">Add new Parts</a>
+        <a class="button1" href="/">Back to Main Page</a>
+        <a class="button1" href="/parts/add">Add new Parts</a>
     </div>
     <table>
         <thead>
@@ -29,8 +29,8 @@
                 <td align="center">${parts.price}</td>
                 <td align="center">${parts.stock}</td>
                 <td>
-                    <a href="/parts/edit/${parts.id}">Edit</a>
-                    <a href="/parts/remove/${parts.id}">Remove</a>
+                    <a class="button1" href="/parts/edit/${parts.id}">Edit</a>
+                    <a class="button1" href="/parts/remove/${parts.id}">Remove</a>
                 </td>
             </tr>
         </c:forEach>
