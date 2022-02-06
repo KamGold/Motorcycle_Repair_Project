@@ -8,11 +8,8 @@
     <link href="/styles.css" rel="stylesheet" type="text/css"/>    <title>Orders</title>
 </head>
 <body>
+<%@include file="../fragments/header.jsp" %>
 <div class="default">
-    <div>
-        <a class="button1" href="/">Back to index</a>
-        <a class="button1" href="/order/add">Add new Order</a>
-    </div>
     <table>
         <thead>
         <th scope="col"> Brand</th>
@@ -38,6 +35,12 @@
                 <td>
                     <div>
                         <a class="button1" href="/order/edit/${orders.id}">Edit</a>
+                        <c:if test="${orders.active == true}">
+                            <a class="button1" href="/order/addService/${orders.id}">Add Services</a>
+                        </c:if>
+                        <c:if test="${orders.active == true}">
+                            <a class="button1" href="/order/addParts/${orders.id}">Add Parts</a>
+                        </c:if>
                         <c:if test="${orders.active == true}">
                             <a class="button1" href="/order/close/${orders.id}">Close order</a>
                         </c:if>

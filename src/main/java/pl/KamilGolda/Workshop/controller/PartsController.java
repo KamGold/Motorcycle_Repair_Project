@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.KamilGolda.Workshop.model.Order;
+
 import pl.KamilGolda.Workshop.model.Parts;
 import pl.KamilGolda.Workshop.repository.PartsRepository;
 

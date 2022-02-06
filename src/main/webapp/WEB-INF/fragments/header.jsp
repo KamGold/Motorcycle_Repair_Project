@@ -11,9 +11,9 @@
     <h1 style="text-align: center">Motorcycle Repair Workshop</h1>
     <span style="display: inline-block"><a href="/"><i class="fas fa-cog fa-5x fa-spin" style="color: #FFFFFF"></i></a></span>
     <span style="display: inline-block"> <ul class="nav">
-            <li><a class="button_header" href="/order/open">Active Orders</a></li>
-            <li><a class="button_header" href="/order/list">All Order</a></li>
-
+            <li><a class="button_header" href="/order/closed">Orders history</a></li>
+            <li><a class="button_header" href="/parts/list">Parts</a></li>
+            <li><a class="button_header" href="/service/list">Services</a></li>
         </ul>
     </span>
 </header>

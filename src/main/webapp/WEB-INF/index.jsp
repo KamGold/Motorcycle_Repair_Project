@@ -13,7 +13,7 @@
 <div class="default">
     <h1 style="text-align: center">Main Page</h1>
     <div style="margin: auto">
-        <h2>Active orders list</h2>
+        <h2>Active orders</h2>
         <table>
             <thead>
             <th scope="col"> Brand</th>
@@ -39,6 +39,12 @@
                     <td>
                         <div>
                             <a class="button1" href="/order/edit/${orders.id}">Edit</a>
+                            <c:if test="${orders.active == true}">
+                                <a class="button1" href="/order/addService/${orders.id}">Add Services</a>
+                            </c:if>
+                            <c:if test="${orders.active == true}">
+                                <a class="button1" href="/order/addParts/${orders.id}">Add Parts</a>
+                            </c:if>
                             <c:if test="${orders.active == true}">
                                 <a class="button1" href="/order/close/${orders.id}">Close order</a>
                             </c:if>

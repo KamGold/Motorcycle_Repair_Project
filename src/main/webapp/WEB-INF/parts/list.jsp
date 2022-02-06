@@ -6,9 +6,11 @@
 <html>
 <head>
     <link href="/styles.css" rel="stylesheet" type="text/css"/>
+    <script src="https://kit.fontawesome.com/7991c29e7f.js" crossorigin="anonymous"></script>
     <title>Parts List</title>
 </head>
 <body>
+<%@include file="../fragments/header.jsp" %>
 <div class="default">
     <div>
         <a class="button1" href="/">Back to Main Page</a>

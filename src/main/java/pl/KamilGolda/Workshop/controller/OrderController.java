@@ -41,6 +41,12 @@ public class OrderController {
         return "order/list";
     }
 
+    @GetMapping("/closed")
+    public String getclosed(Model model) {
+        model.addAttribute("orders", orderRepository.findByActive(false));
+        return "order/list";
+    }
+
     @GetMapping("/close/{id}")
     public String closeOrder(@PathVariable int id) {
         Optional<Order> order = orderRepository.findById(id);
@@ -89,6 +95,33 @@ public class OrderController {
         return "redirect:/order/open";
     }
 
+    @GetMapping("/addService/{id}")
+    public String addService(@PathVariable int id, Model model) {
+        Optional<Order> byId = orderRepository.findById(id);
+        if (byId.isPresent()) {
+            model.addAttribute("order", byId.get());
+            model.addAttribute("service", new Service());
+        } else {
+            return "errors/id";
+        }
+        return "order/addService";
+    }
+
+    @PostMapping("/addService")
+    public String addServiceUpdate(@Valid Order order,@Valid Service service, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "order/addService";
+        }
+        order.getServices().add(service);
+        orderRepository.save(order);
+        return "redirect:/order/open";
+    }
+    @GetMapping ("deleteService/{id}")
+        public String deleteServiceFromOrder(int id, Model model){
+
+
+    }
+
     @PostMapping("/summary/{id}")
     public String getOrderSummary(@PathVariable int id, Model model) {
         Optional<Order> optionalOrder = orderRepository.findById(id);
@@ -106,9 +139,10 @@ public class OrderController {
         model.addAttribute("orderTotalCost", orderTotalCost);
         return "order/summary";
     }
+
     @PostMapping("/summary")
-    public String orderSummary(@Valid Order order, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
+    public String orderSummary(@Valid Order order, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "Error Sorry :(";
         }
         order.setActive(false);
