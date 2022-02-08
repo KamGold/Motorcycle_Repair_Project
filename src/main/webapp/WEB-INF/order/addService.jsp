@@ -12,16 +12,17 @@
 <div class="default">
     <%--@elvariable id="order" type="pl.KamilGolda.Workshop.model.Order"--%>
     <%--@elvariable id="service" type="pl.KamilGolda.Workshop.model.Service"--%>
-    <form:form action="/order/addService" method="post" modelAttribute="service">
-        <form:hidden path="id"/>
-        <form:hidden path="type"/>
-        <form:hidden path="price"/>
-        <form:select path="name" items="${services}" itemLabel="name" itemValue="id"/>
-        <form:errors path="name" cssClass="error"/>
+    <form action="/order/addService" method="post">
+        Add Service:
+        <select name="sId">
+            <c:forEach items="${services}" var="service">
+                <option value="${service.id}">${service.name}</option>
+            </c:forEach>
+        </select>
         <div style="margin-top: 20px">
-            <button type="submit" formaction="/order/addService" value="Update">Update</button>
+            <button type="submit" formaction="/order/addService/${order.id}" value="save">Add</button>
         </div>
-    </form:form>
+    </form>
     <table>
         <thead>
         <th scope="col"> Service Type</th>
@@ -35,8 +36,7 @@
                 <td align="center">${service.name}</td>
                 <td align="center">${service.price}</td>
                 <td>
-                    <a class="button1" href="/service/edit/${service.id}">Edit</a>
-                    <a class="button1" href="/service/remove/${service.id}">Remove</a>
+                    <a class="button1" href="/order/deleteService/${order.id}/${service.id}">Remove</a>
                 </td>
             </tr>
         </c:forEach>

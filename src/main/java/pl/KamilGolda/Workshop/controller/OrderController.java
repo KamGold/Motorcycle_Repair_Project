@@ -107,18 +107,31 @@ public class OrderController {
         return "order/addService";
     }
 
-    @PostMapping("/addService")
-    public String addServiceUpdate(@Valid Order order,@Valid Service service, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "order/addService";
-        }
-        order.getServices().add(service);
-        orderRepository.save(order);
-        return "redirect:/order/open";
-    }
-    @GetMapping ("deleteService/{id}")
-        public String deleteServiceFromOrder(int id, Model model){
+    @PostMapping("/addService/{id}")
+    public String addServiceUpdate(@PathVariable int id, @RequestParam int sId) {
+        Optional<Order> orderOptional = orderRepository.findById(id);
+        Optional<Service> serviceOptional = serviceRepository.findById(sId);
 
+        if (orderOptional.isEmpty() && serviceOptional.isEmpty()) {
+            return "errors/id";
+        }
+        serviceOptional.get();
+        orderOptional.get().getServices().add(serviceOptional.get());
+        orderRepository.save(orderOptional.get());
+        return "redirect:/order/addService/"+ id;
+    }
+    @GetMapping ("/deleteService/{id}/{sId}")
+        public String deleteServiceFromOrder(@PathVariable int id,@PathVariable int sId){
+        Optional<Order> orderOptional = orderRepository.findById(id);
+        Optional<Service> serviceOptional = serviceRepository.findById(sId);
+
+        if (orderOptional.isEmpty() && serviceOptional.isEmpty()) {
+            return "errors/id";
+        }
+        serviceOptional.get();
+        orderOptional.get().getServices().remove(serviceOptional.get());
+        orderRepository.save(orderOptional.get());
+        return "redirect:/order/addService/"+ id;
 
     }
 

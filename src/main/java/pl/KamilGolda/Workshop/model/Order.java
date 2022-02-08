@@ -47,7 +47,7 @@ public class Order {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "orders_services", joinColumns = @JoinColumn(name = "Order_Service_id"),
             inverseJoinColumns = @JoinColumn(name = "Service_id"))
-    private List<Service> services = new ArrayList<>();
+    private Set<Service> services = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "orders_parts", joinColumns = @JoinColumn(name = "Order_Parts_id"),
