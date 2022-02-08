@@ -8,6 +8,7 @@
     <title>Finalize Order ID ${order.id}</title>
 </head>
 <body>
+<%@include file="../fragments/header.jsp" %>
 <%--@elvariable id="order" type="pl.KamilGolda.Workshop.model.Order"--%>
 <%--@elvariable id="parts" type="pl.KamilGolda.Workshop.model.Parts"--%>
 <%--@elvariable id="services" type="pl.KamilGolda.Workshop.model.Service"--%>
@@ -57,29 +58,28 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <h3> Cost of parts used :  ${partsTotalCost}</h3>
+            <h3> Cost of parts used : ${partsTotalCost}</h3>
         </div>
         <div style="flex-grow: 1">
             <h3>Services done</h3>
-                <table>
-                    <thead>
-                    <th scope="col">Service type</th>
-                    <th scope="col">Service name</th>
-                    <th scope="col">Price</th>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${order.services}" var="service">
+            <table>
+                <thead>
+                <th scope="col">Service type</th>
+                <th scope="col">Service name</th>
+                <th scope="col">Price</th>
+                </thead>
+                <tbody>
+                <c:forEach items="${order.services}" var="service">
                     <tr>
                         <td>${service.type}</td>
                         <td>${service.name}</td>
                         <td>${service.price}</td>
                     </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            <h3> Cost of parts used :  ${servicesTotalCost}</h3>
+                </c:forEach>
+                </tbody>
+            </table>
+            <h3> Cost of parts used : ${servicesTotalCost}</h3>
         </div>
-
     </div>
     <div><h2>Order Total Cost : ${orderTotalCost}</h2></div>
 </div>

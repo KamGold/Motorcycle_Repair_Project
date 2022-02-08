@@ -7,6 +7,7 @@
     <link href="/styles.css" rel="stylesheet" type="text/css"/>    <title>Add order</title>
 </head>
 <body>
+<%@include file="../fragments/header.jsp" %>
 <div class="default">
     <%--@elvariable id="order" type="pl.KamilGolda.Workshop.model.Order"--%>
     <form:form method="post" modelAttribute="order">

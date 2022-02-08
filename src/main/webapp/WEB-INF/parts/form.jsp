@@ -7,6 +7,7 @@
     <title>Add part</title>
 </head>
 <body>
+<%@include file="../fragments/header.jsp" %>
 <div class="default">
     <%--@elvariable id="parts" type="pl.KamilGolda.Workshop.model.Parts"--%>
     <form:form method="post" modelAttribute="parts">

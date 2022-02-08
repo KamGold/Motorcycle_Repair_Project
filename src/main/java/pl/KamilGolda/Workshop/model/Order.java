@@ -49,7 +49,7 @@ public class Order {
             inverseJoinColumns = @JoinColumn(name = "Service_id"))
     private Set<Service> services = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "orders_parts", joinColumns = @JoinColumn(name = "Order_Parts_id"),
             inverseJoinColumns = @JoinColumn(name = "Parts_id"))
     private List<Parts> parts = new ArrayList<>();

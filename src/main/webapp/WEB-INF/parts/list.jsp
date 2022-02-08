@@ -12,10 +12,7 @@
 <body>
 <%@include file="../fragments/header.jsp" %>
 <div class="default">
-    <div>
-        <a class="button1" href="/">Back to Main Page</a>
-        <a class="button1" href="/parts/add">Add new Parts</a>
-    </div>
+
     <table>
         <thead>
         <th scope="col"> Part Name</th>
@@ -38,6 +35,8 @@
         </c:forEach>
         </tbody>
     </table>
+    <a class="button1" href="/parts/add">Add New Part</a>
 </div>
+
 </body>
 </html>

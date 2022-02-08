@@ -95,6 +95,32 @@ public class OrderController {
         return "redirect:/order/open";
     }
 
+    @GetMapping("addParts/{id}")
+    public String addParts(@PathVariable int id, Model model) {
+        Optional<Order> byId = orderRepository.findById(id);
+        if (byId.isPresent()) {
+            model.addAttribute("order", byId.get());
+            model.addAttribute("part", new Parts());
+        } else {
+            return "errors/id";
+        }
+        return "order/addParts";
+    }
+
+    @PostMapping("/addParts/{id}")
+    public String addPartsUpdate(@PathVariable int id, @RequestParam int pId) {
+        Optional<Order> orderOptional = orderRepository.findById(id);
+        Optional<Parts> partsOptional = partsRepository.findById(pId);
+        if (orderOptional.isPresent() && partsOptional.isPresent()) {
+            orderOptional.get().getParts().add(partsOptional.get());
+            orderRepository.save(orderOptional.get());
+            partsOptional.get().setStock(partsOptional.get().getStock() - 1);
+            partsRepository.save(partsOptional.get());
+            return "redirect:/order/addParts/" + id;
+        }
+        return "errors/id";
+    }
+
     @GetMapping("/addService/{id}")
     public String addService(@PathVariable int id, Model model) {
         Optional<Order> byId = orderRepository.findById(id);
@@ -112,30 +138,44 @@ public class OrderController {
         Optional<Order> orderOptional = orderRepository.findById(id);
         Optional<Service> serviceOptional = serviceRepository.findById(sId);
 
-        if (orderOptional.isEmpty() && serviceOptional.isEmpty()) {
-            return "errors/id";
+        if (orderOptional.isPresent() && serviceOptional.isPresent()) {
+            orderOptional.get().getServices().add(serviceOptional.get());
+            orderRepository.save(orderOptional.get());
+            return "redirect:/order/addService/" + id;
+
         }
-        serviceOptional.get();
-        orderOptional.get().getServices().add(serviceOptional.get());
-        orderRepository.save(orderOptional.get());
-        return "redirect:/order/addService/"+ id;
+        return "errors/id";
     }
-    @GetMapping ("/deleteService/{id}/{sId}")
-        public String deleteServiceFromOrder(@PathVariable int id,@PathVariable int sId){
+
+    @GetMapping("/deleteService/{id}/{sId}")
+    public String deleteServiceFromOrder(@PathVariable int id, @PathVariable int sId) {
         Optional<Order> orderOptional = orderRepository.findById(id);
         Optional<Service> serviceOptional = serviceRepository.findById(sId);
 
-        if (orderOptional.isEmpty() && serviceOptional.isEmpty()) {
-            return "errors/id";
-        }
-        serviceOptional.get();
-        orderOptional.get().getServices().remove(serviceOptional.get());
-        orderRepository.save(orderOptional.get());
-        return "redirect:/order/addService/"+ id;
+        if (orderOptional.isPresent() && serviceOptional.isPresent()) {
+            orderOptional.get().getServices().remove(serviceOptional.get());
+            orderRepository.save(orderOptional.get());
+            return "redirect:/order/addService/" + id;
 
+        }
+        return "errors/id";
+    }
+    @GetMapping("/deletePart/{id}/{pId}")
+    public String deletePartFromOrder(@PathVariable int id, @PathVariable int pId) {
+        Optional<Order> orderOptional = orderRepository.findById(id);
+        Optional<Parts> partsOptional = partsRepository.findById(pId);
+        if (orderOptional.isPresent() && partsOptional.isPresent()){
+            orderOptional.get().getParts().remove(partsOptional.get());
+            orderRepository.save(orderOptional.get());
+            partsOptional.get().setStock(partsOptional.get().getStock() + 1);
+            partsRepository.save(partsOptional.get());
+            return "redirect:/order/addParts/" + id;
+        }
+        return "errors/id";
     }
 
-    @PostMapping("/summary/{id}")
+
+    @GetMapping("/summary/{id}")
     public String getOrderSummary(@PathVariable int id, Model model) {
         Optional<Order> optionalOrder = orderRepository.findById(id);
         if (optionalOrder.isPresent()) {
@@ -146,10 +186,10 @@ public class OrderController {
         Order order = optionalOrder.get();
         double partsTotalCost = order.getParts().stream().mapToDouble(Parts::getPrice).reduce(0, Double::sum);
         double servicesTotalCost = order.getServices().stream().mapToDouble(Service::getPrice).reduce(0, Double::sum);
-        double orderTotalCost = partsTotalCost + servicesTotalCost;
+        double orderTotalCost = Math.round((partsTotalCost + servicesTotalCost) * 100);
         model.addAttribute("partsTotalCost", partsTotalCost);
         model.addAttribute("servicesTotalCost", servicesTotalCost);
-        model.addAttribute("orderTotalCost", orderTotalCost);
+        model.addAttribute("orderTotalCost", (orderTotalCost / 100));
         return "order/summary";
     }
 

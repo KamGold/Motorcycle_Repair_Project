@@ -7,6 +7,7 @@
     <title>Edit Service ID:${service.id}</title>
 </head>
 <body>
+<%@include file="../fragments/header.jsp" %>
 <div class="default">
     <%--@elvariable id="service" type="pl.KamilGolda.Workshop.model.Service"--%>
     <form:form action="/service/edit" method="post" modelAttribute="service">

@@ -7,6 +7,7 @@
     <title>Add Service</title>
 </head>
 <body>
+<%@include file="../fragments/header.jsp" %>
 <div class="default">
     <%--@elvariable id="service" type="pl.KamilGolda.Workshop.model.Service"--%>
     <form:form method="post" modelAttribute="service">

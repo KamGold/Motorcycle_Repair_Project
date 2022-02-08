@@ -5,7 +5,7 @@
 <html>
 <head>
     <link href="/styles.css" rel="stylesheet"/>
-    <title>Edit Order ID ${order.id}</title>
+    <title>Add Service to Order: ID - ${order.id}</title>
 </head>
 <body>
 <%@include file="../fragments/header.jsp" %>
@@ -42,5 +42,7 @@
         </c:forEach>
         </tbody>
     </table>
+        <a class="button1" style="background-color: red" href="/order/open">Go Back</a>
 </div>
+
 </body>

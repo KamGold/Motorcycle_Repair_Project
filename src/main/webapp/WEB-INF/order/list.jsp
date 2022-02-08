@@ -42,7 +42,7 @@
                             <a class="button1" href="/order/addParts/${orders.id}">Add Parts</a>
                         </c:if>
                         <c:if test="${orders.active == true}">
-                            <a class="button1" href="/order/close/${orders.id}">Close order</a>
+                            <a class="button1" href="/order/summary/${orders.id}">Summary</a>
                         </c:if>
                     </div>
                 </td>

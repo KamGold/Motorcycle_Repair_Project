@@ -25,6 +25,6 @@ public class Parts {
     String manufacturer;
 
     double price;
-    @Min(1)
+    @Min(0)
     int stock;
 }

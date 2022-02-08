@@ -8,6 +8,7 @@
     <title>Edit Order ID ${order.id}</title>
 </head>
 <body>
+<%@include file="../fragments/header.jsp" %>
 <div class="default">
     <%--@elvariable id="order" type="pl.KamilGolda.Workshop.model.Order"--%>
     <%--@elvariable id="mechanics" type="pl.KamilGolda.Workshop.model.Mechanic"--%>
@@ -15,6 +16,8 @@
     <%--@elvariable id="services" type="pl.KamilGolda.Workshop.model.Service"--%>
     <form:form action="/order/edit" method="post" modelAttribute="order">
         <form:hidden path="id"/>
+        <form:hidden path="parts"/>
+        <form:hidden path="services"/>
         <div>
             <label>Brand: </label>
             <form:input path="brand" type="text"/>
@@ -61,20 +64,7 @@
             <form:checkbox path="active" item="${order.active}"/>
             <form:errors path="active" cssClass="error"/>
         </div>
-        <div>
-            <c:if test="${order.active == true}">
-                <div>
-                    <label>Add Parts : </label>
-                    <form:select path="parts" items="${parts}" itemLabel="partName" itemValue="id" multiple="true"/>
-                    <form:errors path="parts" cssClass="error"/>
-                </div>
-                <div>
-                    <label>Add Service: </label>
-                    <form:select path="services" items="${services}" itemLabel="name" itemValue="id" multiple="true"/>
-                    <form:errors path="services" cssClass="error"/>
-                </div>
-            </c:if>
-        </div>
+
         <div style="margin-top: 20px">
             <button type="submit" formaction="/order/edit" value="Update">Update</button>
             <span style="margin-left: 10%"><button type="submit" formaction="/order/summary/${order.id}"

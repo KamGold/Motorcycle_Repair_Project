@@ -7,6 +7,7 @@
     <title>Add Part ID${parts.id}</title>
 </head>
 <body>
+<%@include file="../fragments/header.jsp" %>
 <div class="default">
     <%--@elvariable id="parts" type="pl.KamilGolda.Workshop.model.Parts"--%>
     <form:form action="/parts/edit" method="post" modelAttribute="parts">
@@ -35,9 +36,6 @@
             <input type="submit" value="Save">
         </div>
     </form:form>
-    <form action="/parts/list">
-        <button class="button1" type="submit">Back to Main Page</button>
-    </form>
 </div>
 </body>
 </html>
