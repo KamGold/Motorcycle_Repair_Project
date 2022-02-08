@@ -52,7 +52,7 @@
             <form:errors path="mechanic" cssClass="error"/>
         </div>
         <div>
-            <input type="submit" value="Save">
+            <button type="submit" formaction="/order/add" value="Save">Save</button>
         </div>
     </form:form>
     <form action="/order/list">

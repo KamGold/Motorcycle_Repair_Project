@@ -33,7 +33,7 @@
         </div>
 
         <div>
-            <input type="submit" value="Save">
+            <button type="submit" formaction="/service/add" value="Save">Save</button>
         </div>
     </form:form>
     <form action="/">

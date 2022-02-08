@@ -30,7 +30,7 @@
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
+    background-color: cadetblue;
 }
 
 
@@ -53,7 +53,7 @@
 }
 
 .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: cadetblue;
 }
 
 .dropdown:hover .dropdown-content {

@@ -13,6 +13,7 @@
 <%--@elvariable id="parts" type="pl.KamilGolda.Workshop.model.Parts"--%>
 <%--@elvariable id="services" type="pl.KamilGolda.Workshop.model.Service"--%>
 <div class="default">
+    <h2>Vehicle Details</h2>
     <table style="width: 75%">
         <thead>
         <tr>
@@ -82,6 +83,26 @@
         </div>
     </div>
     <div><h2>Order Total Cost : ${orderTotalCost}</h2></div>
+    <div>
+        <form:form modelAttribute="order" method="post">
+            <form:hidden path="id"/>
+            <form:hidden path="brand"/>
+            <form:hidden path="model"/>
+            <form:hidden path="year"/>
+            <form:hidden path="licensePlate"/>
+            <form:hidden path="ownerName"/>
+            <form:hidden path="ownerSurname"/>
+            <form:hidden path="ownerPhone"/>
+            <form:hidden path="active"/>
+            <form:hidden path="mechanic"/>
+            <form:hidden path="services"/>
+            <form:hidden path="parts"/>
+
+        <a class="button1" style="display: inline-block" href="/order/open">Go Back</a>
+<%--        <a class="button1" style="display: inline-block; margin-left: 5%" href="/order/summary">Close Order</a>--%>
+        <button type="submit" formaction="/order/summary" style="display: inline-block; margin-left: 5%" value="Save">Close Order</button>
+        </form:form>
+    </div>
 </div>
 </body>
 </html>

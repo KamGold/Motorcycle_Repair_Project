@@ -187,20 +187,21 @@ public class OrderController {
         double partsTotalCost = order.getParts().stream().mapToDouble(Parts::getPrice).reduce(0, Double::sum);
         double servicesTotalCost = order.getServices().stream().mapToDouble(Service::getPrice).reduce(0, Double::sum);
         double orderTotalCost = Math.round((partsTotalCost + servicesTotalCost) * 100);
+        model.addAttribute("order", optionalOrder.get());
         model.addAttribute("partsTotalCost", partsTotalCost);
         model.addAttribute("servicesTotalCost", servicesTotalCost);
         model.addAttribute("orderTotalCost", (orderTotalCost / 100));
         return "order/summary";
     }
 
-    @PostMapping("/summary")
+    @PostMapping ("/summary")
     public String orderSummary(@Valid Order order, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "Error Sorry :(";
         }
         order.setActive(false);
         orderRepository.save(order);
-        return "index";
+        return "redirect:/";
     }
 
     @ModelAttribute("mechanics")

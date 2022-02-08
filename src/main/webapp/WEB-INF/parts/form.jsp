@@ -32,7 +32,7 @@
             <form:errors path="stock" cssClass="error"/>
         </div>
         <div>
-            <input type="submit" value="Save">
+            <button type="submit" formaction="/parts/add" value="Save">Save</button>
         </div>
     </form:form>
     <form action="/">

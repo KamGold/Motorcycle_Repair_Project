@@ -67,8 +67,6 @@
 
         <div style="margin-top: 20px">
             <button type="submit" formaction="/order/edit" value="Update">Update</button>
-            <span style="margin-left: 10%"><button type="submit" formaction="/order/summary/${order.id}"
-                                                   value="Summary order">Summary Order</button></span>
         </div>
     </form:form>
     <div style="margin-top: 40px">
