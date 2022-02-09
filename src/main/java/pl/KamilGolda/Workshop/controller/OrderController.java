@@ -114,8 +114,7 @@ public class OrderController {
         if (orderOptional.isPresent() && partsOptional.isPresent()) {
             orderOptional.get().getParts().add(partsOptional.get());
             orderRepository.save(orderOptional.get());
-            partsOptional.get().setStock(partsOptional.get().getStock() - 1);
-            partsRepository.save(partsOptional.get());
+            partsRepository.save(partsOptional.get().subtractionFromDB(partsOptional.get()));
             return "redirect:/order/addParts/" + id;
         }
         return "errors/id";

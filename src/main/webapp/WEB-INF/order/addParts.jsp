@@ -32,14 +32,16 @@
         <thead>
         <th scope="col"> Part Name</th>
         <th scope="col"> Part Manufacturer</th>
-        <th scope="col"> price</th>
+        <th scope="col"> Price</th>
+        <th scope="col"> Quantity</th>
         </thead>
         <tbody>
-        <c:forEach items="${order.parts}" var="parts">
+        <c:forEach items="${order.parts.stream().distinct().toArray()}" var="parts">
             <tr>
                 <th scope="row" align="center">${parts.partName}</th>
                 <td align="center">${parts.manufacturer}</td>
                 <td align="center">${parts.price}</td>
+                <td align="center">${order.parts.stream().filter(p -> p.partName.equals(parts.partName)).count()}</td>
                 <td>
                     <a class="button1" href="/order/deletePart/${order.id}/${parts.id}">Remove</a>
                 </td>

@@ -27,4 +27,9 @@ public class Parts {
     double price;
     @Min(0)
     int stock;
+
+    public Parts subtractionFromDB(Parts parts){
+        parts.setStock(parts.getStock() - 1);
+        return parts;
+    }
 }
