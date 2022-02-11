@@ -48,14 +48,14 @@
         </div>
         <div>
             <label>Assign Mechanic: </label>
-            <form:select path="mechanic.id" items="${mechanics}" itemLabel="Name" itemValue="id"/>
+            <form:hidden  path="mechanic.id" name="id" value="${user.id}" />
             <form:errors path="mechanic" cssClass="error"/>
         </div>
         <div>
             <button type="submit" formaction="/order/add" value="Save">Save</button>
         </div>
     </form:form>
-    <form action="/order/list">
+    <form action="/">
         <button class="button1" type="submit">Back to Main Page</button>
     </form>
 </div>

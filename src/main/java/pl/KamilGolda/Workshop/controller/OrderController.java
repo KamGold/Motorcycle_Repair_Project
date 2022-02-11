@@ -1,6 +1,8 @@
 package pl.KamilGolda.Workshop.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +24,7 @@ import java.util.Optional;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/order")
+//@Secured({"ROLE_USER","ROLE_SU,","ROLE_ADMIN"})
 public class OrderController {
 
     private final OrderRepository orderRepository;
@@ -216,5 +219,10 @@ public class OrderController {
     @ModelAttribute("services")
     public Collection<Service> services() {
         return serviceRepository.findAll();
+    }
+
+    @ModelAttribute("user")
+    public Mechanic logged(){
+        return mechanicRepository.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 }

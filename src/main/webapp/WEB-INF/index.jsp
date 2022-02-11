@@ -37,13 +37,37 @@
                     <td align="center">${orders.mechanic.name}</td>
                     <td>
                         <div>
-                            <a class="button1" href="/order/edit/${orders.id}">Edit</a>
-                            <c:if test="${orders.active == true}">
-                                <a class="button1" href="/order/addService/${orders.id}">Add Services</a>
-                            </c:if>
-                            <c:if test="${orders.active == true}">
-                                <a class="button1" href="/order/addParts/${orders.id}">Add Parts</a>
-                            </c:if>
+                            <c:choose>
+                                <c:when test="${orders.mechanic.id == user.id}">
+                                    <a class="button1" href="/order/edit/${orders.id}">Edit</a>
+                                </c:when>
+                                <c:when test="${orders.mechanic.id != user.id}">
+                                    <a class="button1" style="pointer-events: none"
+                                       href="/order/edit/${orders.id}"><s>Edit</s></a>
+                                </c:when>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${orders.mechanic.id == user.id}">
+                                    <c:if test="${orders.active == true}">
+                                        <a class="button1" href="/order/addService/${orders.id}">Add Services</a>
+                                    </c:if>
+                                </c:when>
+                                <c:when test="${orders.mechanic.id != user.id}">
+                                    <a class="button1" style="pointer-events: none"
+                                       href="/order/addService/${orders.id}"><s>Add Services</s></a>
+                                </c:when>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${orders.mechanic.id == user.id}">
+                                    <c:if test="${orders.active == true}">
+                                        <a class="button1" href="/order/addParts/${orders.id}">Add Parts</a>
+                                    </c:if>
+                                </c:when>
+                                <c:when test="${orders.mechanic.id != user.id}">
+                                    <a class="button1" style="pointer-events: none" href="/order/addParts/${orders.id}"><s>Add
+                                        Parts</s></a>
+                                </c:when>
+                            </c:choose>
                             <c:if test="${orders.active == true}">
                                 <a class="button1" href="/order/close/${orders.id}">Close order</a>
                             </c:if>

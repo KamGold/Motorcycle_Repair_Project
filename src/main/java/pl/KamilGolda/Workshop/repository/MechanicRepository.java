@@ -6,4 +6,5 @@ import pl.KamilGolda.Workshop.model.Mechanic;
 
 @Repository
 public interface MechanicRepository extends JpaRepository<Mechanic, Integer> {
+    Mechanic findByLogin(String login);
 }
