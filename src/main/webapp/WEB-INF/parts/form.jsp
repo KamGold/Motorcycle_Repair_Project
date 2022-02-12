@@ -35,9 +35,7 @@
             <button type="submit" formaction="/parts/add" value="Save">Save</button>
         </div>
     </form:form>
-    <form action="/">
-        <button class="button1" type="submit">Back to Main Page</button>
-    </form>
+        <a class="button1" style="background-color: red" href="/">Go Back</a>
 </div>
 </body>
 </html>

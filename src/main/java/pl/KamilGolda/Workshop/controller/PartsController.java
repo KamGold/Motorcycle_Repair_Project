@@ -12,6 +12,8 @@ import pl.KamilGolda.Workshop.model.Mechanic;
 import pl.KamilGolda.Workshop.model.Parts;
 import pl.KamilGolda.Workshop.repository.MechanicRepository;
 import pl.KamilGolda.Workshop.repository.PartsRepository;
+import pl.KamilGolda.Workshop.security.Role;
+import pl.KamilGolda.Workshop.security.RoleRepository;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -23,6 +25,7 @@ import java.util.Optional;
 public class PartsController {
     private final PartsRepository partsRepository;
     private final MechanicRepository mechanicRepository;
+    private final RoleRepository roleRepository;
 
     @GetMapping("/list")
     public String getList(Model model) {
@@ -65,5 +68,9 @@ public class PartsController {
     @ModelAttribute("user")
     public Mechanic logged(){
         return mechanicRepository.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
+    }
+    @ModelAttribute("roleAdmin")
+    public Role isAdmin() {
+        return roleRepository.findByName("ROLE_ADMIN");
     }
 }

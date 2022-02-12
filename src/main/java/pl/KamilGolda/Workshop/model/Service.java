@@ -21,9 +21,10 @@ public class Service {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     @NotBlank
-    String type;
-    @NotBlank
     String name;
+    @ManyToOne
+    @JoinColumn(name = "Type_id")
+    ServiceType serviceType;
     @Min(1)
     double price;
 }

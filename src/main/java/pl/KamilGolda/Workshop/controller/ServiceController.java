@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import pl.KamilGolda.Workshop.model.Mechanic;
 
 import pl.KamilGolda.Workshop.model.Service;
+import pl.KamilGolda.Workshop.model.ServiceType;
 import pl.KamilGolda.Workshop.repository.MechanicRepository;
 import pl.KamilGolda.Workshop.repository.ServiceRepository;
+import pl.KamilGolda.Workshop.repository.ServiceTypeRepository;
+import pl.KamilGolda.Workshop.security.Role;
+import pl.KamilGolda.Workshop.security.RoleRepository;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -23,6 +27,8 @@ import java.util.Optional;
 public class ServiceController {
     private final ServiceRepository serviceRepository;
     private final MechanicRepository mechanicRepository;
+    private final ServiceTypeRepository serviceTypeRepository;
+    private final RoleRepository roleRepository;
 
     @GetMapping("/list")
     public String getList(Model model) {
@@ -33,6 +39,7 @@ public class ServiceController {
     @GetMapping("/add")
     public String addService(Model model) {
         model.addAttribute("service", new Service());
+        model.addAttribute("serviceType", serviceTypeRepository.findAll());
         return "service/form";
     }
 
@@ -65,5 +72,9 @@ public class ServiceController {
     @ModelAttribute("user")
     public Mechanic logged(){
         return mechanicRepository.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
+    }
+    @ModelAttribute("roleAdmin")
+    public Role isAdmin() {
+        return roleRepository.findByName("ROLE_ADMIN");
     }
 }

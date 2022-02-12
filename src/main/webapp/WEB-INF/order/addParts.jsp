@@ -14,6 +14,8 @@
     <%--@elvariable id="order" type="pl.KamilGolda.Workshop.model.Order"--%>
     <%--@elvariable id="parts" type="pl.KamilGolda.Workshop.model.Parts"--%>
     <form action="/order/addService" method="post">
+
+
         Add Part:
         <select name="pId">
             <c:forEach items="${parts}" var="part">
@@ -49,7 +51,7 @@
         </c:forEach>
         </tbody>
     </table>
-    <a class="button1" style="background-color: red" href="/order/open">Go Back</a>
+    <a class="button1" style="background-color: red" href="/">Go Back</a>
 </div>
 
 </body>

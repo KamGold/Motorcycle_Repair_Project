@@ -32,9 +32,10 @@ public class SpringDataUserDetailsService implements UserDetailsService {
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         mechanic.getRoles().forEach(r ->
                 grantedAuthorities.add(new SimpleGrantedAuthority(r.getName())));
-        return new User(
+        return new CurrentUser(
                 mechanic.getLogin(),
                 mechanic.getPassword(),
-                grantedAuthorities);
+                grantedAuthorities,
+                mechanic);
     }
 }

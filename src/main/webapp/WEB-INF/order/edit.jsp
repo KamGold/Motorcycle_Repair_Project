@@ -70,9 +70,7 @@
         </div>
     </form:form>
     <div style="margin-top: 40px">
-        <form action="/">
-            <button  class="button1" style="background-color: red;" type="submit">Back to Main Page</button>
-        </form>
+        <a class="button1" style="background-color: red" href="/">Go Back</a>
     </div>
 </div>
 </body>

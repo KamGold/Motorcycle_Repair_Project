@@ -72,7 +72,7 @@
                 <tbody>
                 <c:forEach items="${order.services}" var="service">
                     <tr>
-                        <td>${service.type}</td>
+                        <td>${service.serviceType.type}</td>
                         <td>${service.name}</td>
                         <td>${service.price}</td>
                     </tr>
@@ -98,7 +98,7 @@
             <form:hidden path="services"/>
             <form:hidden path="parts"/>
 
-        <a class="button1" style="display: inline-block" href="/order/open">Go Back</a>
+        <a class="button1" style="display: inline-block;background-color: red" href="/">Back to Main Page</a>
 <%--        <a class="button1" style="display: inline-block; margin-left: 5%" href="/order/summary">Close Order</a>--%>
         <button type="submit" formaction="/order/summary" style="display: inline-block; margin-left: 5%" value="Save">Close Order</button>
         </form:form>

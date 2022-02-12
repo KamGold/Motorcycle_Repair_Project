@@ -15,7 +15,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableJpaRepositories(basePackages = "pl.KamilGolda")
 public class AppConfig implements WebMvcConfigurer {
     public void configureViewResolvers(ViewResolverRegistry registry) {
-
         registry.jsp("/WEB-INF/", ".jsp");
 
     }

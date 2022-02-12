@@ -47,7 +47,6 @@
             <form:errors path="ownerPhone" cssClass="error"/>
         </div>
         <div>
-            <label>Assign Mechanic: </label>
             <form:hidden  path="mechanic.id" name="id" value="${user.id}" />
             <form:errors path="mechanic" cssClass="error"/>
         </div>

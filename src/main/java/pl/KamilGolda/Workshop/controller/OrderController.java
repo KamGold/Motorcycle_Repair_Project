@@ -15,6 +15,8 @@ import pl.KamilGolda.Workshop.repository.MechanicRepository;
 import pl.KamilGolda.Workshop.repository.OrderRepository;
 import pl.KamilGolda.Workshop.repository.PartsRepository;
 import pl.KamilGolda.Workshop.repository.ServiceRepository;
+import pl.KamilGolda.Workshop.security.Role;
+import pl.KamilGolda.Workshop.security.RoleRepository;
 
 
 import javax.validation.Valid;
@@ -24,13 +26,14 @@ import java.util.Optional;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/order")
-//@Secured({"ROLE_USER","ROLE_SU,","ROLE_ADMIN"})
+@Secured({"ROLE_USER","ROLE_SU,","ROLE_ADMIN"})
 public class OrderController {
 
     private final OrderRepository orderRepository;
     private final MechanicRepository mechanicRepository;
     private final PartsRepository partsRepository;
     private final ServiceRepository serviceRepository;
+    private final RoleRepository roleRepository;
 
     @GetMapping("/list")
     public String getList(Model model) {
@@ -162,11 +165,12 @@ public class OrderController {
         }
         return "errors/id";
     }
+
     @GetMapping("/deletePart/{id}/{pId}")
     public String deletePartFromOrder(@PathVariable int id, @PathVariable int pId) {
         Optional<Order> orderOptional = orderRepository.findById(id);
         Optional<Parts> partsOptional = partsRepository.findById(pId);
-        if (orderOptional.isPresent() && partsOptional.isPresent()){
+        if (orderOptional.isPresent() && partsOptional.isPresent()) {
             orderOptional.get().getParts().remove(partsOptional.get());
             orderRepository.save(orderOptional.get());
             partsOptional.get().setStock(partsOptional.get().getStock() + 1);
@@ -186,17 +190,17 @@ public class OrderController {
             return "Error sorry :(";
         }
         Order order = optionalOrder.get();
-        double partsTotalCost = order.getParts().stream().mapToDouble(Parts::getPrice).reduce(0, Double::sum);
-        double servicesTotalCost = order.getServices().stream().mapToDouble(Service::getPrice).reduce(0, Double::sum);
-        double orderTotalCost = Math.round((partsTotalCost + servicesTotalCost) * 100);
+        double partsTotalCost = Math.round(order.getParts().stream().mapToDouble(Parts::getPrice).reduce(0, Double::sum) * 100.0) / 100.0;
+        double servicesTotalCost = Math.round(order.getServices().stream().mapToDouble(Service::getPrice).reduce(0, Double::sum) * 100.0) / 100.0;
+        double orderTotalCost = partsTotalCost + servicesTotalCost;
         model.addAttribute("order", optionalOrder.get());
         model.addAttribute("partsTotalCost", partsTotalCost);
         model.addAttribute("servicesTotalCost", servicesTotalCost);
-        model.addAttribute("orderTotalCost", (orderTotalCost / 100));
+        model.addAttribute("orderTotalCost", orderTotalCost);
         return "order/summary";
     }
 
-    @PostMapping ("/summary")
+    @PostMapping("/summary")
     public String orderSummary(@Valid Order order, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "Error Sorry :(";
@@ -222,7 +226,11 @@ public class OrderController {
     }
 
     @ModelAttribute("user")
-    public Mechanic logged(){
+    public Mechanic logged() {
         return mechanicRepository.findByLogin(SecurityContextHolder.getContext().getAuthentication().getName());
+    }
+    @ModelAttribute("roleAdmin")
+    public Role isAdmin() {
+        return roleRepository.findByName("ROLE_ADMIN");
     }
 }

@@ -8,13 +8,13 @@
 
 
 <div class="navbar">
-    <a href="/" title="Index"><i class="fas fa-cog fa-5x fa-spin" style="color: #FFFFFF"></i></a>
+    <a href="/" title="Main Page"><i class="fas fa-cog fa-5x fa-spin" style="color: #FFFFFF"></i></a>
     <div class="dropdown">
         <button class="dropbtn">Orders Menu<i class="fa fa-caret-down"></i></button>
         <div class="dropdown-content">
             <a href="/order/open">Active Orders</a>
             <a href="/order/add">Add New Orders</a>
-            <sec:authorize access="hasRole('ADMIN')">
+            <sec:authorize access="hasAnyRole('ADMIN','SU')">
                 <a href="/order/closed">Closed Orders History</a>
             </sec:authorize>
         </div>
@@ -23,7 +23,7 @@
         <button class="dropbtn">Services Menu<i class="fa fa-caret-down"></i></button>
         <div class="dropdown-content">
             <a href="/service/list">Available Services</a>
-            <sec:authorize access="hasRole('SU')">
+            <sec:authorize access="hasAnyRole('ADMIN','SU')">
                 <a href="/service/add">Add New Service</a>
             </sec:authorize>
         </div>

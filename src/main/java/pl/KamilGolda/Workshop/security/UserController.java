@@ -22,7 +22,8 @@ public class UserController {
     private final MechanicRepository mechanicRepository;
 
     @GetMapping("/users")
-    public String getUsersList(){
+    public String getUsersList(Model model){
+        model.addAttribute("users", mechanicRepository.findAll());
         return "adminPanel/userList";
     }
 

@@ -32,7 +32,7 @@
         <tbody>
         <c:forEach items="${order.services}" var="service">
             <tr>
-                <th scope="row" align="center">${service.type}</th>
+                <th scope="row" align="center">${service.serviceType.type}</th>
                 <td align="center">${service.name}</td>
                 <td align="center">${service.price}</td>
                 <td>
@@ -42,7 +42,6 @@
         </c:forEach>
         </tbody>
     </table>
-        <a class="button1" style="background-color: red" href="/order/open">Go Back</a>
+        <a class="button1" style="background-color: red" href="/">Go Back</a>
 </div>
-
 </body>

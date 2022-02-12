@@ -13,13 +13,8 @@
     <form:form method="post" modelAttribute="service">
         <div>
             <label>Service Type: </label>
-            <form:select path="type" type="text">
-                <form:option value="Engine and gearbox">Engine and gearbox</form:option>
-                <form:option value="Braking system">Braking system</form:option>
-                <form:option value="Wheels and suspension">Wheels and suspension</form:option>
-                <form:option value="Drive">Drive</form:option>
-            </form:select>
-            <form:errors path="type" cssClass="error"/>
+            <form:select path="serviceType.id" items="${serviceType}" itemLabel="type" itemValue="id"/>
+            <form:errors path="serviceType" cssClass="error"/>
         </div>
         <div>
             <label>Service Name: </label>
@@ -36,9 +31,7 @@
             <button type="submit" formaction="/service/add" value="Save">Save</button>
         </div>
     </form:form>
-    <form action="/">
-        <button class="button1" type="submit">Back to Main Page</button>
-    </form>
+        <a class="button1" style="background-color: red" href="/">Go Back</a>
 </div>
 </body>
 </html>

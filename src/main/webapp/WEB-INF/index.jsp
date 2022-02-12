@@ -9,8 +9,12 @@
 </head>
 <body>
 <%@include file="fragments/header.jsp" %>
+<%--@elvariable id="user" type="pl.KamilGolda.Workshop.model.Mechanic"--%>
 <div class="default">
-    <h1 style="text-align: center">Main Page</h1>
+    <div style="text-align: center;display: inline-block ">
+        <h1 style="display: inline-block">Main Page</h1>
+        <h2 style="display: inline-block; margin-left: 25px">Today is ${day} | ${dateTime}</h2>
+    </div>
     <div style="margin: auto">
         <h2>Active orders</h2>
         <table>
@@ -38,7 +42,9 @@
                     <td>
                         <div>
                             <c:choose>
-                                <c:when test="${orders.mechanic.id == user.id}">
+                                <%--@elvariable id="currentUser" type="pl.KamilGolda.Workshop.security.CurrentUser"--%>
+                                <%--@elvariable id="isAdmin" type="boolean"--%>
+                                <c:when test="${orders.mechanic.id == user.id || user.roles.contains(roleAdmin) }">
                                     <a class="button1" href="/order/edit/${orders.id}">Edit</a>
                                 </c:when>
                                 <c:when test="${orders.mechanic.id != user.id}">
@@ -47,7 +53,7 @@
                                 </c:when>
                             </c:choose>
                             <c:choose>
-                                <c:when test="${orders.mechanic.id == user.id}">
+                                <c:when test="${orders.mechanic.id == user.id || user.roles.contains(roleAdmin)}">
                                     <c:if test="${orders.active == true}">
                                         <a class="button1" href="/order/addService/${orders.id}">Add Services</a>
                                     </c:if>
@@ -58,7 +64,7 @@
                                 </c:when>
                             </c:choose>
                             <c:choose>
-                                <c:when test="${orders.mechanic.id == user.id}">
+                                <c:when test="${orders.mechanic.id == user.id || user.roles.contains(roleAdmin)}">
                                     <c:if test="${orders.active == true}">
                                         <a class="button1" href="/order/addParts/${orders.id}">Add Parts</a>
                                     </c:if>
@@ -69,7 +75,10 @@
                                 </c:when>
                             </c:choose>
                             <c:if test="${orders.active == true}">
-                                <a class="button1" href="/order/close/${orders.id}">Close order</a>
+                                <a class="button1" href="/order/summary/${orders.id}">Summary</a>
+                            </c:if>
+                            <c:if test="${orders.active == true && user.roles.contains(roleAdmin)}">
+                                <a class="button1" href="/order/close/${orders.id}">Cancel Order</a>
                             </c:if>
                         </div>
                     </td>

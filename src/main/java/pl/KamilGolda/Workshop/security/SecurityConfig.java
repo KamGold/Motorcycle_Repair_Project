@@ -15,15 +15,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/").authenticated()
+                .antMatchers("/*").authenticated()
                 .antMatchers("/order/*").hasAnyRole("USER","SU","ADMIN")
                 .antMatchers("/service/*").hasAnyRole("USER","SU","ADMIN")
                 .antMatchers("/parts/*").hasAnyRole("USER","SU","ADMIN")
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/parts/add").hasAnyRole("ADMIN", "SU")
-                .and().formLogin();
+                .and().formLogin()
+                .defaultSuccessUrl("/",true);
 
     }
 

@@ -28,14 +28,19 @@
                 <td align="center">${parts.price}</td>
                 <td align="center">${parts.stock}</td>
                 <td>
-                    <a class="button1" href="/parts/edit/${parts.id}">Edit</a>
-                    <a class="button1" href="/parts/remove/${parts.id}">Remove</a>
+                    <sec:authorize access="hasAnyRole('ADMIN','SU')">
+                        <a class="button1" href="/parts/edit/${parts.id}">Edit</a>
+                        <a class="button1" href="/parts/remove/${parts.id}">Remove</a>
+                    </sec:authorize>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <a class="button1" href="/parts/add">Add New Part</a>
+    <sec:authorize access="hasAnyRole('ADMIN','SU')">
+        <a class="button1" href="/parts/add">Add New Part</a>
+    </sec:authorize>
+    <a class="button1" style="background-color: red" href="/">Go Back</a>
 </div>
 
 </body>

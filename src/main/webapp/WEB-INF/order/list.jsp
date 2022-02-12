@@ -2,6 +2,7 @@
 <%@ taglib prefix="form"
            uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <head>
@@ -36,49 +37,40 @@
                 <td>
                     <div>
                         <c:choose>
-                            <c:when test="${orders.mechanic.id == user.id}">
+                            <c:when test="${orders.mechanic.id == user.id || user.roles.contains(roleAdmin) }">
                                 <a class="button1" href="/order/edit/${orders.id}">Edit</a>
                             </c:when>
                             <c:when test="${orders.mechanic.id != user.id}">
                                 <a class="button1" style="pointer-events: none"
-                                   href="/order/edit/${orders.id}"><s>Edit</s></a>
+                                   href="/order/edit/${orders.id}">Edit</a>
                             </c:when>
                         </c:choose>
                         <c:choose>
-                            <c:when test="${orders.mechanic.id == user.id}">
+                            <%--@elvariable id="user" type="pl.KamilGolda.Workshop.model.Mechanic"--%>
+                            <c:when test="${orders.mechanic.id == user.id || user.roles.contains(roleAdmin) }">
                                 <c:if test="${orders.active == true}">
                                     <a class="button1" href="/order/addService/${orders.id}">Add Services</a>
                                 </c:if>
                             </c:when>
                             <c:when test="${orders.mechanic.id != user.id}">
                                 <a class="button1" style="pointer-events: none"
-                                   href="/order/addService/${orders.id}"><s>Add Services</s></a>
+                                   href="/order/addService/${orders.id}">Add Services</a>
                             </c:when>
                         </c:choose>
                         <c:choose>
-                            <c:when test="${orders.mechanic.id == user.id}">
+                            <c:when test="${orders.mechanic.id == user.id || user.roles.contains(roleAdmin)}">
                                 <c:if test="${orders.active == true}">
                                     <a class="button1" href="/order/addParts/${orders.id}">Add Parts</a>
                                 </c:if>
                             </c:when>
                             <c:when test="${orders.mechanic.id != user.id}">
-                                <a class="button1" style="pointer-events: none" href="/order/addParts/${orders.id}"><s>Add
-                                    Parts</s></a>
+                                <a class="button1" style="pointer-events: none" href="/order/addParts/${orders.id}">Add
+                                    Parts</a>
                             </c:when>
                         </c:choose>
-                        <c:choose>
-                        <c:when test="${orders.mechanic.id == user.id}">
                             <c:if test="${orders.active == true}">
                                 <a class="button1" href="/order/summary/${orders.id}">Summary</a>
                             </c:if>
-                        </c:when>
-                        <c:when test="${orders.mechanic.id != user.id}">
-                            <a class="button1" style="pointer-events: none" href="/order/addParts/${orders.id}"><s>Add
-                                Parts</s></a>
-                        </c:when>
-                        <c:if test="${orders.active == true}">
-                            <a class="button1" href="/order/summary/${orders.id}">Summary</a>
-                        </c:if>
                     </div>
                 </td>
             </tr>
